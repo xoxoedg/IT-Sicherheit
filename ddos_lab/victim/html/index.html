@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Victim Lab — Testseite</title>
+    <meta name="description" content="Lokales DDoS / Rate-Limit Labor — Testseite (nur lokal, akademisch)" />
+    <style>
+        :root{
+            --bg:#071428;
+            --card:#0f2130;
+            --accent:#38bdf8;
+            --muted:#98a2b3;
+            --text:#e6eef6;
+            --glass: rgba(255,255,255,0.03);
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, #041021 0%, #07172a 100%);
+            color:var(--text);
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            padding:28px;
+            display:flex;
+            min-height:100vh;
+            align-items:center;
+            justify-content:center;
+        }
+        .card{
+            width:100%;
+            max-width:900px;
+            background:linear-gradient(180deg,var(--card), rgba(10,24,36,0.9));
+            border-radius:14px;
+            padding:28px;
+            box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        header{display:flex;gap:18px;align-items:center}
+        .logo{
+            width:64px;height:64px;border-radius:10px;
+            background:linear-gradient(135deg,var(--accent), #6ee7b7);
+            display:flex;align-items:center;justify-content:center;font-weight:700;color:#032;box-shadow:0 4px 14px rgba(56,189,248,0.12)
+        }
+        h1{margin:0;font-size:1.5rem}
+        p.lead{margin:6px 0 0;color:var(--muted)}
+        .grid{display:grid;grid-template-columns:1fr 220px;gap:18px;margin-top:20px}
+        @media (max-width:720px){.grid{grid-template-columns:1fr}}
+        .content{padding-right:6px}
+        .meta{background:var(--glass);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+        ul{margin:10px 0 0 18px;color:var(--muted)}
+        code{background:rgba(255,255,255,0.03);padding:.15rem .4rem;border-radius:6px;color:var(--text)}
+        footer{margin-top:18px;color:var(--muted);font-size:0.9rem}
+        .btn{
+            display:inline-block;padding:10px 12px;border-radius:9px;background:linear-gradient(90deg,var(--accent),#60a5fa);
+            color:#042; font-weight:600;text-decoration:none;border:none;cursor:pointer;
+        }
+        .status {font-family: monospace; font-size: 0.95rem; color: var(--muted); background: rgba(255,255,255,0.02); padding:8px;border-radius:6px; display:inline-block;}
+    </style>
+</head>
+<body>
+<main class="card" role="main">
+    <header>
+        <div class="logo">VL</div>
+        <div>
+            <h1>Victim Lab — Testseite</h1>
+            <p class="lead">Lokales DDoS / Rate-Limit Labor — nur zu Testzwecken (isolierte Umgebung)</p>
+        </div>
+    </header>
+
+    <div class="grid" aria-live="polite">
+        <section class="content" aria-label="Beschreibung">
+            <h2>Wozu diese Seite?</h2>
+            <p>Diese statische Seite dient als einfacher Zielpunkt für Load-Tests, Caching-Checks und Rate-limit-Experimente. Sie liefert eine Index-Seite und ein maschinenlesbares Status-Endpoint unter <code>/status.json</code>.</p>
+
+            <h3>Was du finden kannst</h3>
+            <ul>
+                <li><code>/</code> → Diese Indexseite (index.html)</li>
+                <li><code>/status.json</code> → Kurzes JSON-Objekt zur automatischen Überwachung</li>
+                <li>Weitere Dateien (z. B. <code>/about.html</code>) falls vorhanden</li>
+            </ul>
+
+            <h3>Schneller Test</h3>
+            <p>Im Terminal:</p>
+            <pre class="status">curl -I http://localhost:8080/</pre>
+            <p>Oder im Browser: <a class="btn" href="/" role="button">Seite öffnen</a></p>
+
+            <footer>
+                <p>Nur lokal verwenden — niemals gegen fremde Systeme ohne Erlaubnis.</p>
+            </footer>
+        </section>
+
+        <aside class="meta" aria-label="Meta">
+            <h4>Status</h4>
+            <p class="status">service: victim<br>status: ok<br>version: 1.0</p>
+
+            <h4 style="margin-top:12px">Tipps</h4>
+            <ul>
+                <li>Für schnelle Iteration: benutze ein Bind-Mount statt COPY</li>
+                <li>Bei COPY: nach Änderungen neu bauen (<code>docker compose build victim</code>)</li>
+                <li>Rate-limit Errors: such nach <code>429</code> in den Access-Logs</li>
+            </ul>
+        </aside>
+    </div>
+</main>
+</body>
+</html>
