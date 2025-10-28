@@ -2,6 +2,24 @@
 
 **Kurz:** Dieses Lab dient ausschließlich **akademischen Zwecken** und lokalen Tests. Führe es nur in einer isolierten Testumgebung aus — niemals gegen fremde Systeme oder das Internet. Du trägst die Verantwortung für die Durchführung.
 
+
+## Fachlich
+
+Angrriff versucht das Zielsystem oder Netz für berechtigte Anwender unbenutzbar zu machen (CIA Trident -> availability)
+
+Arten von DoS:
+Anforderung beschränkter unteilbarer Ressourcen des OS
+
+- CPU Zeit
+- Platte
+- Bandbreite
+
+Schutz (ICMP Flooding):
+
+- Server so konfigurieren, dass diese nicht auf Broadcast Pings antworten
+- Router so konfigurieren, dass sie von außen an die Broadcast-Adresse gerichtete Pakete nicht weiterleiten
+
+
 ---
 
 ## Aufbau des Repositories
