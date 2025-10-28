@@ -22,7 +22,7 @@ def main():
 
     threads = []
     for i in range(args.threads):
-        t = threading.Thread(target=debug, args=(i, args.target, args.reqs, args.delay))
+        t = threading.Thread(target=worker, args=(i, args.target, args.reqs, args.delay))
         t.start()
         time.sleep(0.1)
         threads.append(t)
