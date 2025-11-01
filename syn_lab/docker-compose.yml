@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  victim:
+    image: nginx:alpine
+    container_name: syn_victim
+    ports:
+      - "8080:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - synnet
+    cap_add:
+      - NET_ADMIN  # erlaubt optional tcpdump oder netstat im Container
+    stdin_open: true
+    tty: true
+
+networks:
+  synnet:
+    driver: bridge
